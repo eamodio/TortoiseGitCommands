@@ -4,6 +4,7 @@
         <Identity Id="TortoiseGitCommands.Eric Amodio.38202c1a-d038-41a7-b240-39b2e4cd83f1" Version="0.1" Language="en-US" Publisher="Eric Amodio" />
         <DisplayName>TortoiseGitCommands</DisplayName>
         <Description xml:space="preserve">Provides quick access to TortoiseGit commands.</Description>
+        <License>License.txt</License>
         <Tags>git,tortoise,tortoisegit</Tags>
     </Metadata>
     <Installation>
