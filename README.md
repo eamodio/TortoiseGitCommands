@@ -17,7 +17,7 @@ Provides quick access to TortoiseGit commands. This extension adds a "Tortoise G
 ## Default Shortcut Keys
 
 `Ctrl+G,S` or `Ctrl+G,Ctrl+S` = Status
-`Ctrl+G,C` or `Ctrl+G,Ctrl+C` = Commit 
+`Ctrl+G,C` or `Ctrl+G,Ctrl+C` = Commit
 `Ctrl+G,H` or `Ctrl+G,Ctrl+H` = File Log (History)
-`Ctrl+G,D` or `Ctrl+G,Ctrl+D` = File Diff 
+`Ctrl+G,D` or `Ctrl+G,Ctrl+D` = File Diff
 `Ctrl+G,B` or `Ctrl+G,Ctrl+B` = File Blame

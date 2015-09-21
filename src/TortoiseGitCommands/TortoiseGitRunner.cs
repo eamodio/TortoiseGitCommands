@@ -54,8 +54,8 @@ namespace TortoiseGitCommands
             Paths = paths;
         }
 
-        private const string CommandArgsFormat = "/command:{0} /path:{1}";
-        private const string BlameCommandArgsFormat = "/command:{0} /path:{1} /line:{2}";
+        private const string CommandArgsFormat = "/command:{0} /path:\"{1}\"";
+        private const string BlameCommandArgsFormat = "/command:{0} /path:\"{1}\" /line:{2}";
 
         public void ExecuteCommand(TortoiseGitCommandScope scope, TortoiseGitCommands command)
         {

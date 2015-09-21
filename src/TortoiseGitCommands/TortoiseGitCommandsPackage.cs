@@ -1,10 +1,4 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="TortoiseCommandsPackage.cs" company="Company">
-//     Copyright (c) Company.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
@@ -13,6 +7,7 @@ using EnvDTE80;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using TortoiseGitCommands.Commands;
 
 namespace TortoiseGitCommands
 {
@@ -37,9 +32,9 @@ namespace TortoiseGitCommands
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [Guid(TortoiseGitCommandsPackageGuids.PackageGuidString)]
+    [Guid(PackageGuids.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    public sealed class TortoiseCommandsPackage : Package
+    public sealed class TortoiseGitCommandsPackage : Package
     {
         internal static DTE2 Dte => _dte ?? (_dte = ServiceProvider.GlobalProvider.GetService(typeof(DTE)) as DTE2);
         private static DTE2 _dte;
@@ -50,9 +45,9 @@ namespace TortoiseGitCommands
         public IPaths Paths { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TortoiseCommandsPackage"/> class.
+        /// Initializes a new instance of the <see cref="TortoiseGitCommandsPackage"/> class.
         /// </summary>
-        public TortoiseCommandsPackage()
+        public TortoiseGitCommandsPackage()
         {
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
@@ -69,7 +64,7 @@ namespace TortoiseGitCommands
             Paths = new Paths(Environment);
             Runner = new TortoiseGitRunner(Environment, Paths);
 
-            TortoiseGitMenu.Initialize(this);
+            PackageCommands.Initialize(this);
 
             base.Initialize();
 
@@ -89,7 +84,12 @@ namespace TortoiseGitCommands
             UpdateCommandsUI(this);
         }
 
-        private static void UpdateCommandsUI(IServiceProvider sp)
+        public void UpdateCommandsUI()
+        {
+            UpdateCommandsUI(this);
+        }
+
+        public static void UpdateCommandsUI(IServiceProvider sp, bool immediate = false)
         {
             var shell = (IVsUIShell)sp.GetService(typeof(IVsUIShell));
             if (shell == null)
@@ -97,7 +97,7 @@ namespace TortoiseGitCommands
                 return;
             }
 
-            var hr = shell.UpdateCommandUI(0);
+            var hr = shell.UpdateCommandUI(immediate ? 1 : 0);
             ErrorHandler.ThrowOnFailure(hr);
         }
     }

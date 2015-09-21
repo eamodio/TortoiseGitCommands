@@ -22,7 +22,7 @@
 
     <!--The Commands section is where we the commands, menus and menu groups are defined.
       This section uses a Guid to identify the package that provides the command defined inside it. -->
-    <Commands package="guidTortoiseGitCommandsPackage">
+    <Commands package="guidPackage">
         <!-- Inside this section we have different sub-sections: one for the menus, another
     for the menu groups, one for the buttons (the actual commands), one for the combos
     and the last one for the bitmaps used. Each element is identified by a command id that
@@ -30,19 +30,6 @@
     called "command set" and is used to group different command inside a logically related
     group; your package should define its own command set in order to avoid collisions
     with command ids defined by other packages. -->
-
-        <Menus>
-            <Menu guid="guidPackageCmdSet" id="TortoiseGitMenu" priority="0x700" type="Menu">
-                <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_CMDLINE" />
-                <CommandFlag>DontCache</CommandFlag>
-                <CommandFlag>DefaultInvisible</CommandFlag>
-                <CommandFlag>DynamicVisibility</CommandFlag>
-                <Strings>
-                    <ButtonText>Tortoise Git</ButtonText>
-                    <CommandName>Tortoise Git</CommandName>
-                </Strings>
-            </Menu>
-        </Menus>
 
         <!-- In this section you can define new menu groups. A menu group is a container for
          other menus or buttons (commands); from a visual point of view you can see the
@@ -56,6 +43,19 @@
                 <Parent guid="guidPackageCmdSet" id="TortoiseGitMenu" />
             </Group>
         </Groups>
+
+        <Menus>
+            <Menu guid="guidPackageCmdSet" id="TortoiseGitMenu" priority="0x700" type="Menu">
+                <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_CMDLINE" />
+                <CommandFlag>DontCache</CommandFlag>
+                <CommandFlag>DefaultInvisible</CommandFlag>
+                <CommandFlag>DynamicVisibility</CommandFlag>
+                <Strings>
+                    <ButtonText>Tortoise Git</ButtonText>
+                    <CommandName>Tortoise Git</CommandName>
+                </Strings>
+            </Menu>
+        </Menus>
 
         <!--Buttons section. -->
         <!--This section defines the elements the user can interact with, like a menu command or a button
@@ -117,13 +117,13 @@
         </Buttons>
 
         <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
-        <Bitmaps>
+        <!--<Bitmaps>-->
             <!--  The bitmap id is defined in a way that is a little bit different from the others:
             the declaration starts with a guid for the bitmap strip, then there is the resource id of the
             bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
             inside a button definition. An important aspect of this declaration is that the element id
             must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-        </Bitmaps>
+        <!--</Bitmaps>-->
     </Commands>
 
     <KeyBindings>
@@ -142,7 +142,7 @@
 
     <Symbols>
         <!-- This is the package guid. -->
-        <GuidSymbol name="guidTortoiseGitCommandsPackage" value="{748fd3da-b291-43d8-b018-e0b7240edbf9}" />
+        <GuidSymbol name="guidPackage" value="{748fd3da-b291-43d8-b018-e0b7240edbf9}" />
 
         <!-- This is the guid used to group the menu commands together -->
         <GuidSymbol name="guidPackageCmdSet" value="{03fd3928-9f87-4d31-9cd4-ccf9af6b4239}">
